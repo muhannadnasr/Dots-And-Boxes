@@ -1,7 +1,8 @@
 # Dots-And-Boxes
 A simple implementation of the game ( dots and boxes ) with C language
 
-Ali Hassan
-Muhannad Tarek
-Muhannad Nasr
+## Developed By
+* Ali Hassan Youssef
+* Mohannad Tarek Abd El-khalek
+* Muhannad Nasr Abdo
 
