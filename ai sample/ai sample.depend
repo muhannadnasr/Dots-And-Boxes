@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1576608928 source:c:\users\carnival stores\desktop\ai sample\main.c
+	<stdio.h>
+	<stdlib.h>
+

@@ -1,0 +1,473 @@
+(check_boxes) is a function that takes a number every turn 
+which represents the color of the player and it checks all the lines 
+around each square and whether his move completes a square or not...
+it returns a value that decides the number of boxes that he closed in his
+turn..
+
+Function check_boxes(color of the player){
+initialize to_get_point to 0
+initialize box_num to 1 (to loop and check all boxes)
+loop and check each box
+	if the box is empty:
+		go and check the lines around it.
+		if the lines are all filled:
+			add 1 to the value of to_get_point
+			draw the box with the player's color
+			update the color of the box in array called (boxes)
+		end if
+	end if
+end loop
+return to_get_point
+}
+
+---------------------------------------------------------------------------
+(play_game) is a function that deals with players inputs and it controls the
+turn and the points system and it helps the player if he needs to undo his
+move or redo it and it helps him to save th game so he can complete it 
+anytime he wants...
+
+function play_game{
+
+initialize check_score
+initialize line_num
+while there is lines available to fill
+	go to game turn (loop and switch turns until the lines are all filled):
+	if turn modules 2 equals 0
+		(it's player 1 turn)
+		print "Enter the line number"
+		scan a value of the player and store it in line_num
+		if line_num equals -1
+			undo a move
+		
+		
+		else if line_num equals -2
+			redo a move
+		
+		
+		else if line_num equals -3
+			save the game	
+
+		else if line_num equals -4
+			go back to main menu
+
+		else if line_num equals -5
+			exit game	
+		
+		else if line_num is greater than 0 and less than or equal
+		to the lines limit
+
+			if the line is empty
+				draw that line
+				set check_score to the value of check_boxes function	
+				if check_score equals to 1
+					give player 1 a point
+					make him play another turn
+				else if check_score equals to 2
+					give player 1 two points
+					make him play another turn
+				else
+					switch the turn (add 1 to turn value)
+				end if
+			else if the line is filled
+				print"invalid line input"
+				scan another value and check it again
+			end if
+	
+		else
+			print"invalid line input"
+			scan another value and check it again
+		end if
+			
+	end if
+
+
+	if turn modules 2 equals 1
+		(it's player 2 turn)
+		print "Enter the line number"
+		scan a value of the player and store it in line_num
+		if line_num equals -1
+			undo a move
+		
+		
+		else if line_num equals -2
+			redo a move
+		
+		
+		else if line_num equals -3
+			save the game	
+
+		else if line_num equals -4
+			go back to main menu
+
+		else if line_num equals -5
+			exit game	
+		
+		else if line_num is greater than 0 and less than or equal
+		to the lines limit
+
+			if the line is empty
+				draw that line
+				set check_score to the value of check_boxes function	
+				if check_score equals to 1
+					give player 2 a point
+					make him play another turn
+				else if check_score equals to 2
+					give player 2 two points
+					make him play another turn
+				else
+					switch the turn (add 1 to turn value)
+				end if
+			else if the line is filled
+				print"invalid line input"
+				scan another value and check it again
+			end if
+	
+		else
+			print"invalid line input"
+			scan another value and check it again
+		end if
+			
+	end if
+
+end while
+
+if player 1 score is greater than player 2 score 
+
+	print"player 1 won"
+	load the old scores and sort them
+	set check equals to the value of function (checkhighscore)
+	if check equals to 1
+		print"congratulation you got a new high score"
+	end if
+	we sort the scores one more time
+	print"your rank: (the player's new rank)"
+	print"press any key to go back to main menu"
+	we scan from the player any key 
+
+end if
+	
+if player 1 score is less than player 2 score 
+
+	print"player 2 won"
+	load the old scores and sort them
+	set check equals to the value of function (checkhighscore)
+	if check equals to 1
+		print"congratulation you got a new high score"
+	end if
+	we sort the scores one more time
+	print"your rank: (the player's new rank)"
+	print"press any key to go back to main menu"
+	we scan from the player any key 
+
+
+end if
+
+if player 1 score is equal to player 2 score
+
+	print"TIE"
+	print"press any key to go back to main menu"
+	we scan any key from the player
+
+end if 
+}
+
+-----------------------------------------------------------------------------------
+(checkhighscore) is a function that takes 2 parameters [the players name , his score]
+and it checks for his existance in the top 10 list and it gives him a rank 
+
+
+function checkhighscore (player name , playerscore){
+
+initialize place and give it a vlaue of 0
+initialize existed 
+initialize status
+loop for all the name in top 10 list
+	if his name is in the list 
+		set existed to 1 
+		end the loop
+	else
+		set existed to 0 
+	end if
+	increment the value of place by 1
+end loop
+
+if the value of existed is 1 
+	if the old score of the player is less than the new one
+		set the score of the player to the new score
+		set status to 1 (existing player)
+	else 
+		set status to 0
+else if the value of existed is 0 
+	we will save the player's name and his score 
+	set status to 2 (new player)
+
+end if 
+
+return status value
+}
+
+-----------------------------------------------------------------------------------
+
+the main{
+---------
+in the beginning we will call a function called (print_logo) to print 
+the game's logo and we will call another one to print the main menu 
+called (print_main_menu)...
+we scan the choice of the player from the main menu
+if his choice is 1
+	we will turn him to a page to choose the game mood 
+	we scan his choice again
+	if his choice is 1
+		we turn him to (human vs human) mode
+		we scan the two players' names giving the
+		first player a red color and the second a blue
+		color.
+		we scan his choice of grid size
+		if his choice is 1
+			we turn him to beginner mode 2*2
+		else if his choice is 2 
+			we turn him to expert mode 5*5
+		else
+			print"invalid input"
+			we turn him back to choose grid size
+		end if
+	else if his choise is 2
+		we turn him to (human vs computer) mode	
+		we scan his name and give him a red color and 
+		the computer gets a blue color.
+		we scan his choice of grid size
+		if his choice is 1
+			we turn him to beginner mode 2*2
+		else if his choice is 2 
+			we turn him to expert mode 5*5
+		else
+			print"invalid input"
+			we turn him back to choose grid size
+		end if
+	else if his choice is 3 
+		we turn him back to main menu
+	else
+		print"invalid input"
+		go back to choose game mood
+	end if
+
+else if his choice is 2
+	we turn him to the load page to choose from 
+	we scan the game number that he wants to load
+	if his choice is 1 
+		we will load game 1
+	else if his choice is 1 
+		we will load game 2
+	else if his choice is 1 
+		we will load game 3
+	else if his choice is 1 
+		we will turn him back to main menu 
+	else
+		print"enter valid savefile"
+		we make him choose again
+	end if
+
+else if his choice is 3
+	we call the rank function and show the player the top 10 scores so far.
+
+else if his choice is 4
+	we exit the game.
+else
+	print"invalid input"
+	we make him choose again from the main menu
+end if
+}
+
+----------------------------------------------------------------------------------
+
+(play_computer) is a function that deals with the player inputs when he plays
+against the computer and it controls the
+turn and the points system and it helps the player if he needs to undo his
+move or redo it and it helps him to save the game so he can complete it 
+anytime he wants, and it makes the computer play random available lines if there
+are not squares to be completed...
+
+function play_computer{
+
+initialize check_score
+initialize line_num
+initialize counterr
+initialize check
+we have 2 global arrays (getline[]) and (checker[]) the first one to store the numbers
+of the lines in their indecies according to the size of grid and the second one 
+store the status of every line whether it's filled or not
+
+while there is lines available to fill
+	go to game turn (loop and switch turns until the lines are all filled):
+	if turn modules 2 equals 0
+		(it's player turn 'human')
+		print "Enter the line number"
+		scan a value of the player and store it in line_num
+		if line_num equals -1
+			if there are lines to undo
+				undo a move
+			else
+				print"invalid undo"
+			end if
+		
+		else if line_num equals -2
+			if there are steps saved to redo
+				redo a move
+			else
+				print"invalid redo"
+			end if
+	
+		else if line_num equals -3
+			go to save menu
+			scan a number from the player
+			if the number equals 1	
+				save the game at file 1
+			else if the number equals 2	
+				save the game at file 2
+			else if the number equals 3
+				save the game at file 3
+			else if the number equals 4 
+				return to game turn and make him play his turn
+			else
+				print"enter a valid save file"
+			end if
+
+
+
+		else if line_num equals -4
+			go back to main menu
+
+		else if line_num equals -5
+			exit game	
+		
+		else if line_num is greater than 0 and less than or equal
+		to the lines limit
+
+			if the line is empty
+				draw that line
+				set check_score to the value of check_boxes function	
+				if check_score equals to 1
+					give player 1 a point
+				else if check_score equals to 2
+					give player 1 two points
+				else
+					switch the turn (add 1 to turn value)
+				end if
+			else if the line is filled
+				print"invalid line input"
+				scan another value and check it again
+			end if
+	
+		else
+			print"invalid line input"
+			scan another value and check it again
+		end if
+			
+	end if
+
+
+	if turn modules 2 equals 1
+		(it's computer turn)
+		
+		loop and go to each box and check the status of the lines in checker[]
+			set counterr to the number of lines filled around the box
+			if counterr equals 3
+				if the line in the above is empty
+					set line_num to getline[the index of this line]
+					set check to 1
+					end the loop
+				else if the line in the right is empty
+					set line_num to getline[the index of this line]
+					set check to 1
+					end the loop
+				else if the line in the left is empty
+					set line_num to getline[the index of this line]
+					set check to 1
+					end the loop
+				else if the line in the below is empty
+					set line_num to getline[the index of this line]
+					set check to 1
+					end the loop
+				end if
+			else 
+				set check to 0
+			end if
+
+			if check equals 1 
+				end the loop
+			end if
+		end loop
+			
+		if line_num equals 0
+			the computer will choose a random line to fill 
+		end if
+
+		if the line is empty
+		
+			draw that line
+			set check_score to the value of check_boxes function	
+			if check_score equals to 1
+				give thee computer a point
+				make the computer play another turn
+			else if check_score equals to 2
+				give the computer two points
+				make the computer play another turn
+			else
+				switch the turn (add 1 to turn value)
+			end if
+		else if the line is filled
+			go to game turn and make the computer choose another
+			random line
+		end if
+	end if		
+end while
+
+if player score is greater than computer score 
+
+	print"player won"
+	load the old scores and sort them
+	set check equals to the value of function (checkhighscore)
+	if check equals to 1
+		print"congratulation you got a new high score"
+	end if
+	we sort the scores one more time
+	print"your rank: (the player's new rank)"
+	print"press any key to go back to main menu"
+	we scan from the player any key 
+
+end if
+	
+if player score is less than computer score 
+
+	print"computer won"
+	print"press any key to go back to main menu"
+	we scan from the player any key 
+
+
+end if
+
+if player 1 score is equal to computer score
+
+	print"TIE"
+	print"press any key to go back to main menu"
+	we scan any key from the player
+
+end if 
+}
+
+
+		
+
+	
+
+
+
+
+				
+
+			
+
+
+		
+
+
